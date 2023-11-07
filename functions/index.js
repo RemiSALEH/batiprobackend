@@ -8,7 +8,7 @@ const port = 3000;
 
 app.use(bodyParser.json());
 app.use(cors());
-
+app.enableCors();
 app.use(cors({
   origin: 'http://localhost:4200', // Update this to the origin of your frontend application
   methods: 'POST',
