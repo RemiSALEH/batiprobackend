@@ -9,6 +9,12 @@ const port = 3000;
 app.use(bodyParser.json());
 app.use(cors());
 
+app.use(cors({
+  origin: 'http://localhost:4200', // Update this to the origin of your frontend application
+  methods: 'POST',
+  optionsSuccessStatus: 200, // Some legacy browsers choke on 204
+}));
+
 app.post('/send-email', (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
