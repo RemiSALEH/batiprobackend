@@ -7,22 +7,12 @@ const app = express();
 const port = 3000;
 
 app.use(bodyParser.json());
-app.use(cors((req, res, next) => {
-  const frontendOrigin = req.headers.origin;
-  const allowedOrigins = [
-    'http://localhost:4200', // Replace with actual frontend origin
-    'https://my-frontend-app.com', // Replace with actual frontend origin
-  ];
+app.use(cors({
+  origin: "https://batipro77-5fa6f.web.app"
+}
+))
+app.options('*', cors())
 
-  if (allowedOrigins.includes(frontendOrigin)) {
-    res.header('Access-Control-Allow-Origin', frontendOrigin);
-    res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', '*');
-    next();
-  } else {
-    res.status(403).send('Origin not allowed');
-  }
-}));
 
 app.post('/send-email', (req, res) => {
   const name = req.body.name;
