@@ -7,14 +7,7 @@ const app = express();
 const port = 3000;
 
 app.use(bodyParser.json());
-const corsOptions = {
-  origin: 'http://localhost:4200', // Change this to match your frontend URL
-  methods: 'GET,POST,PUT,DELETE,OPTIONS',
-  optionsSuccessStatus: 204,
-  credentials: true, // If your frontend sends cookies
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.post('/send-email', (req, res) => {
   const name = req.body.name;
