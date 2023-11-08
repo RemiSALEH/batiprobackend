@@ -7,14 +7,14 @@ const app = express();
 const port = 3000;
 
 app.use(bodyParser.json());
-app.use(cors());
+const corsOptions = {
+  origin: 'http://localhost:4200', // Change this to match your frontend URL
+  methods: 'GET,POST,PUT,DELETE,OPTIONS',
+  optionsSuccessStatus: 204,
+  credentials: true, // If your frontend sends cookies
+};
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept');
-  next();
-});
+app.use(cors(corsOptions));
 
 app.post('/send-email', (req, res) => {
   const name = req.body.name;
